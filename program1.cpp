@@ -2,23 +2,27 @@
 #include<vector>
 #include<string>
 using namespace std;
+// Template class for Student System
 template <typename T>
  class StudentSystem{
     public:
-        vector<T>sid;
-        vector<T>sname;
+        vector<T>sid;// Stores student IDs
+        vector<T>sname;// Stores student names
 
+        // Constructor
         StudentSystem(){
             cout<<"The student details initialized successfully."<<endl;
         }
+         // Destructor
        ~StudentSystem(){
             cout<<"The student details is destoryed."<<endl;
         }
 };
+// Derived class Students inheriting from StudentSystem
 template<typename T>
 class Students:public StudentSystem<T>{
     public:
-
+        // Function to add student details
         void studentAdd(){
             int no_student;
             cout<<"Enter the number of students:";
@@ -35,7 +39,7 @@ class Students:public StudentSystem<T>{
                 this->sname.push_back(stud_name);
             }
         }
-
+         // Function to display all student details
         void studentDisplayAll(){
             if (this->sid.empty()) 
             {
@@ -51,7 +55,7 @@ class Students:public StudentSystem<T>{
                      << "Student Name: " << this->sname[i] << endl;
             }
         }
-
+        // Function to remove a student by ID
         void studentRemove(){
             T stud_id;
             cout << "Enter Student ID to Remove: ";
@@ -64,11 +68,14 @@ class Students:public StudentSystem<T>{
                     this->sid.erase(this->sid.begin()+i);
                     this->sname.erase(this->sname.begin()+i); 
                     cout<<"Student ID "<<stud_id<<"removed successfully."<<endl;
-                }   
+                }  
+                else{
+                    cout << "Invalid Student ID & No student Details." << endl; 
+                } 
             }
-            cout << "Invalid Student ID & No student Details." << endl;      
+                
         }
-
+         // Function to search for a student by ID
         void studentSearch(){
             T stud_id;
             cout << "Enter Student ID to Search: ";
@@ -82,12 +89,16 @@ class Students:public StudentSystem<T>{
                          << "Student ID: " << this->sid[i] << endl
                          << "Student Name: " << this->sname[i] << endl;    
                 }
+                else{
+                    cout << "Student not ID." << endl;
+                }
             }
-            cout << "Student not ID." << endl;
+           
         }
         
 
 };
+// Main function to interact with the user
 int main(){
     int choice;
     Students<string> std_show;
